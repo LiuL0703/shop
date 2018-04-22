@@ -7,7 +7,7 @@ const CleanPlugin = require('clean-webpack-plugin');
 const config = require('./config/config');
 
 const ROOT_PATH = pathLib.resolve(__dirname);
-const ENTRY_PATH = pathLib.resolve(ROOT_PATH, 'client');
+const ENTRY_PATH = pathLib.resolve(ROOT_PATH, 'app');
 const OUTPUT_PATH = pathLib.resolve(ROOT_PATH, 'build');
 console.log(pathLib.resolve(ENTRY_PATH, 'index.js'));
 
@@ -17,7 +17,7 @@ module.exports = {
             'react-hot-loader/patch',
             `webpack-hot-middleware/client?path=http://${config.host}:${config.port}/__webpack_hmr`,
             'babel-polyfill',
-            pathLib.resolve(ENTRY_PATH, 'src/index.js')
+            pathLib.resolve(ENTRY_PATH, 'index.js')
         ],
         vendor: ['react', 'react-dom']
     },
