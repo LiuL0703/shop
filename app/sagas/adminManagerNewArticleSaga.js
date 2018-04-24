@@ -25,11 +25,11 @@ export function* saveArticleFlow() {
     while (true) {
         let request = yield take(NewArticleActionTypes.SAVE_ARTICLE);
         if (request.data.title === '') {
-            yield put({type: IndexActionTypes.SET_MESSAGE, msgContent: '请输入文章标题', msgType: 0});
+            yield put({type: IndexActionTypes.SET_MESSAGE, msgContent: '请输入物品标题', msgType: 0});
         } else if (request.data.content === "") {
-            yield put({type: IndexActionTypes.SET_MESSAGE, msgContent: '请输入文章内容', msgType: 0});
+            yield put({type: IndexActionTypes.SET_MESSAGE, msgContent: '请输入物品内容', msgType: 0});
         } else if (request.data.tags.length === 0) {
-            yield put({type: IndexActionTypes.SET_MESSAGE, msgContent: '请选择文章分类', msgType: 0});
+            yield put({type: IndexActionTypes.SET_MESSAGE, msgContent: '请选择物品分类', msgType: 0});
         }
         if (request.data.title && request.data.content && request.data.tags.length > 0) {
             let res = yield call(saveArticle, request.data);

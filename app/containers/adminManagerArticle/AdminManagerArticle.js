@@ -20,7 +20,7 @@ class AdminManagerArticle extends Component{
     render(){
         return(
             <div>
-                <h2>文章管理</h2>
+                <h2>物品管理</h2>
                 <div className={style.articleListContainer}>
                     {
                         this.props.articleList.map((item,index)=>(

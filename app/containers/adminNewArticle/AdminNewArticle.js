@@ -3,8 +3,6 @@ import PureRenderMixin from 'react-addons-pure-render-mixin'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import style from './style.css'
-import remark from 'remark'
-import reactRenderer from 'remark-react'
 import {Input, Select, Button, Modal} from 'antd';
 import {actions} from "../../reducers/adminManagerNewArticle";
 import {actions as tagActions} from "../../reducers/adminManagerTags";
@@ -22,6 +20,7 @@ class AdminNewArticle extends Component {
             options: [],
             modalVisible: false
         };
+        console.log(this.props)
     }
 
     //正文内容

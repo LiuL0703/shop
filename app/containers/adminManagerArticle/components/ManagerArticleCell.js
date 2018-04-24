@@ -1,6 +1,13 @@
 import style from '../style.css'
 import React from 'react'
 import {Button} from 'antd'
+
+var pub = {
+    color:'green'
+}
+var unPub = {
+    color:'red'
+}
 export const ManagerArticleCell = (props)=>(
     <div className={style.cellContainer}>
         <div className={style.cellAboutArticle}>
@@ -13,9 +20,11 @@ export const ManagerArticleCell = (props)=>(
             </p>
         </div>
         <div className={style.cellState}>
-            <span>
-                {props.data.isPublish?'已发布':'草稿'}
-            </span>
+            
+                {props.data.isPublish
+                    ? <span style={pub}>已发布</span>
+                    :<span style={unPub}>未发布</span>}
+            
         </div>
         <div className={style.cellOperation}>
             <Button type='primary' icon="edit" onClick={()=>{props.edit_article(props.data._id);props.history.push('/admin/newArticle')}}>编辑</Button>

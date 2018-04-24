@@ -17,7 +17,7 @@ export const ArticleListCell = (props)=>(
             </p>
             
             <p className={style.summary}>
-                $1000
+                ￥{props.data.price}
             </p>
             <div>
                 <p>
