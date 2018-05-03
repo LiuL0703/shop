@@ -11,7 +11,8 @@ router.post('/addArticle', function (req, res) {
         content,
         time,
         tags,
-        isPublish
+        isPublish,
+        address,
     } = req.body;
     const author = req.session.userInfo.username;
     // const coverImg =  `/${Math.round(Math.random() * 9 + 1)}.jpg`;
@@ -28,7 +29,8 @@ router.post('/addArticle', function (req, res) {
         time,
         author,
         coverImg,
-        tags:tags.split(',')
+        tags:tags.split(','),
+        address,
     });
     tempArticle.save().then(data=>{
         responseClient(res,200,0,'发布成功',data)
@@ -46,9 +48,10 @@ router.post('/updateArticle',(req,res)=>{
         time,
         tags,
         isPublish,
-        id
+        id,
+        address,
     } = req.body;
-    Article.update({_id:id},{title,price,content,time,tags:tags.split(','),isPublish})
+    Article.update({_id:id},{title,price,address,content,time,tags:tags.split(','),isPublish})
         .then(result=>{
             console.log(result);
             responseClient(res,200,0,'更新成功',result)

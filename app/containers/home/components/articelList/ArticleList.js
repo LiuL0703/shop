@@ -5,7 +5,8 @@ import {ArticleListCell} from "../articleListCell/ArticleListCell";
 export default class ArticleList extends Component{
     constructor(props){
         super(props);
-        this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this)
+        this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this);
+        console.log(this.props.data)
     }
 
     render(){

@@ -89,6 +89,8 @@ export function* editArticleFlow () {
                 let tags = res.data.tags;
                 let id = res.data._id;
                 let price = res.data.price;
+                let address = res.data.address;
+                yield put({type:NewArticleTypes.UPDATING_ADDRESS,address});
                 yield put({type:NewArticleTypes.SET_ARTICLE_ID,id});
                 yield put({type:NewArticleTypes.UPDATING_TAGS,tags});
                 yield put({type:NewArticleTypes.UPDATING_CONTENT,content});

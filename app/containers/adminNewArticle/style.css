@@ -16,18 +16,19 @@
     border:solid thin #ddd;
     margin:10px 0;
     height: 100px;
-    width: 100%;
+    width: 60%;
 }
 .subTitle{
     color: #373737;
     font-size: 14px;
+    display: block;
 }
 
 .container{
     margin-top: 10px;
 }
 .titleInput{
-    width: 60%;
+    width: 40% !important;
     display: block;
     margin:10px 0;
 }

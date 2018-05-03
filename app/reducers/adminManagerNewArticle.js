@@ -5,7 +5,9 @@ const initialState={
     price:'',
     content:'',
     tags:[],
-    id:''
+    id:'',
+    address:'',
+    pics:[],
 };
 export const actionTypes = {
     UPDATING_TITLE:"UPDATING_TITLE",
@@ -13,7 +15,9 @@ export const actionTypes = {
     UPDATING_CONTENT:"UPDATING_CONTENT",
     UPDATING_TAGS:"UPDATING_TAGS",
     SAVE_ARTICLE:"SAVE_ARTICLE",
-    SET_ARTICLE_ID:"SET_ARTICLE_ID"
+    SET_ARTICLE_ID:"SET_ARTICLE_ID",
+    UPDATING_ADDRESS:"UPDATING_ADDRESS",
+    UPDATING_PICS:"UPDATING_PICS",
 };
 export const actions = {
     update_title:function (title) {
@@ -41,6 +45,19 @@ export const actions = {
             type:actionTypes.UPDATING_TAGS,
             tags
         }
+    },
+
+    update_address:function (address) {
+        return{
+            type:actionTypes.UPDATING_ADDRESS,
+            address   
+        } 
+    },
+    update_pics:function(pics){
+        return{
+            type:actionTypes.UPDATING_PICS,
+            pics
+        } 
     },
     save_article:function (data) {
         return{
@@ -73,6 +90,14 @@ export function reducer(state=initialState,action) {
             return{
                 ...state,id:action.id
             };
+        case actionTypes.UPDATING_ADDRESS:
+            return{
+                ...state,address:action.address
+            };
+        case actionTypes.UPDATING_PICS:
+            return{
+                ...state,pics:action.pics
+            }; 
         default:
             return state;
     }
