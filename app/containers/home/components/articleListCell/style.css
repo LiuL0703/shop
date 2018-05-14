@@ -11,7 +11,7 @@
     box-shadow: 3px 3px 7px #9a9292;
 }
 .container>div:first-child>img{
-    width: auto;
+    width: 176px;
     height: 110px;
 }
 
@@ -32,8 +32,8 @@
 .title{
     display: block;
     color: black;
-    font-size: 16px;
-    height: 50px;
+    font-size: 20px;
+    height: 27px;
 }
 .bottomContainer>div{
     display: flex;
@@ -49,9 +49,8 @@
     color: #cdcdcd;
 }
 .summary{
-    font-size: 24px;
-    margin-bottom: 5px;
-    color:#6200ff;
+    font-size: 18px;
+    color:#e90303;;
 }
 .bottomContainer>div>p img{
     margin-right: 5px;
@@ -69,4 +68,11 @@
 }
 .lastSpan>span{
     font-size: 12px;
+    margin-right: 30px;
+}
+.address{
+    margin: 4px;
+}
+.price{
+    font-size: 13px;
 }

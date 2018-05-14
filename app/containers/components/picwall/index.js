@@ -20,7 +20,10 @@ export default class PicturesWall extends Component {
     });
   }
 
-  handleChange = ({ fileList }) => this.setState({ fileList })
+  handleChange = ({ fileList }) => {
+    this.setState({ fileList });
+    console.log(this.state)
+  }
 
   render() {
     const { previewVisible, previewImage, fileList } = this.state;
@@ -33,7 +36,7 @@ export default class PicturesWall extends Component {
     return (
       <div className="clearfix">
         <Upload
-          action="//jsonplaceholder.typicode.com/posts/"
+          action="/api/admin/article/upload"
           listType="picture-card"
           fileList={fileList}
           onPreview={this.handlePreview}

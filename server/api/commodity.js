@@ -15,8 +15,8 @@ router.post('/addArticle', function (req, res) {
         address,
     } = req.body;
     const author = req.session.userInfo.username;
-    // const coverImg =  `/${Math.round(Math.random() * 9 + 1)}.jpg`;
-    const coverImg = `/1.jpg`;
+    const coverImg =  `/${Math.round(Math.random() * 9 + 1)}.jpg`;
+    // const coverImg = `/1.jpg`;
     const viewCount = 0;
     const commentCount = 0;
     let tempArticle = new Article({
@@ -39,7 +39,12 @@ router.post('/addArticle', function (req, res) {
         responseClient(res);
     });
 });
-
+router.post('/upload',(req, res)=>{
+    console.log('========REQUEST============')
+    console.log(req);
+    console.log('++++++++RESPONSE++++++++++++');
+    console.log(res);
+});
 router.post('/updateArticle',(req,res)=>{
     const {
         title,
@@ -53,13 +58,14 @@ router.post('/updateArticle',(req,res)=>{
     } = req.body;
     Article.update({_id:id},{title,price,address,content,time,tags:tags.split(','),isPublish})
         .then(result=>{
-            console.log(result);
             responseClient(res,200,0,'更新成功',result)
         }).cancel(err=>{
         console.log(err);
         responseClient(res);
     });
 });
+
+
 
 router.get('/delArticle',(req,res)=>{
     let id = req.query.id;

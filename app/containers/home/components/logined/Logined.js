@@ -5,9 +5,10 @@ import {Button} from 'antd'
 export const Logined = (props) => (
     <div className={style.container}>
         <img src={require('./timg.jpeg')}/>
-        <p>欢迎：{props.userInfo.username}</p>
-        <p className={style.centerP}>光临西安科技大学二手交易平台</p>
+        <p className={style.center}>{props.userInfo.username}</p>
+        <p className={style.center}>普通会员</p>
+        <p className={style.center}>积分：1000</p>
         {props.userInfo.userType === 'admin' ?
-            <Button onClick={() => props.history.push('/admin')} type="primary">点击进入管理页面</Button> : null}
+            <Button onClick={() => props.history.push('/admin')} type="primary">发布物品</Button> : null}
     </div>
 );

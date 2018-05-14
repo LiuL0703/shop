@@ -34,3 +34,8 @@
     max-width: 100%;
     height: auto;
 }
+
+.comments{
+    margin: 30px 0px;
+    background: #fff;
+}

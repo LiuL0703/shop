@@ -16,5 +16,10 @@ module.exports = new mongoose.Schema({
     isPublish:Boolean,//是否发布
     address:String, // 地址
     price:Number, // 价格
-    pics:Array, // 上传图片    
+    pics:Array, // 上传图片 
+    comments:[{
+        user:String,
+        content:String,
+        createAt:String
+    }],         // 评论   
 });

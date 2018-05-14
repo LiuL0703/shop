@@ -11,7 +11,7 @@ class AdminManagerTags extends Component{
     constructor(props){
         super(props);
         this.state={
-            tags: ['首页', 'HTML', 'CSS','JAVASCRIPT'],
+            tags: ['首页', '数码电子', '体育运动','日用品'],
             inputVisible: false,
             inputValue: '',
         }
