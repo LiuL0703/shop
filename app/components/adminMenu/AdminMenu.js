@@ -3,10 +3,10 @@ import {Menu, Icon} from 'antd'
 
 const menus = [
     {url: '/', name: '首页', iconType: 'home'},
-    {url: '/managerUser', name: '用户管理', iconType: 'usergroup-delete'},
+    // {url: '/managerUser', name: '用户管理', iconType: 'usergroup-delete'},
     {url: '/newArticle', name: '发布物品', iconType: 'file-text'},
-    {url: '/managerTags', name: '标签管理', iconType: 'tags-o'},
-    {url: '/managerArticle', name: '发布物品管理', iconType: 'edit'},
+    // {url: '/managerTags', name: '标签管理', iconType: 'tags-o'},
+    {url: '/managerArticle', name: '物品管理', iconType: 'edit'},
 ];
 export default class AdminMenu extends Component {
     constructor(props) {
@@ -32,7 +32,6 @@ export default class AdminMenu extends Component {
                                 <span>{item.name}</span>
                             </Menu.Item>)
                     }
-
                 </Menu>
             </div>
         )

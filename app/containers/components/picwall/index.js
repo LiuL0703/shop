@@ -20,11 +20,13 @@ export default class PicturesWall extends Component {
     });
   }
 
-  handleChange = ({ fileList }) => {
-    this.setState({ fileList });
-    console.log(this.state)
+  handleChange = (info) => {
+    let {fileList} = info;
+    console.log(info);
+    this.setState({fileList:[...fileList]});
+    return info.file;
   }
-
+ 
   render() {
     const { previewVisible, previewImage, fileList } = this.state;
     const uploadButton = (
@@ -41,6 +43,7 @@ export default class PicturesWall extends Component {
           fileList={fileList}
           onPreview={this.handlePreview}
           onChange={this.handleChange}
+          multiple={true}
         >
           {fileList.length >= 3 ? null : uploadButton}
         </Upload>

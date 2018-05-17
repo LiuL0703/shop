@@ -3,7 +3,10 @@ import Express from 'express'
 const router = Express.Router();
 import Article from '../../models/commodity'
 import {responseClient} from '../util'
-
+const path = require('path');
+const formidable = require('formidable');
+var pic = [];
+var url = '';
 router.post('/addArticle', function (req, res) {
     const {
         title,
@@ -14,9 +17,10 @@ router.post('/addArticle', function (req, res) {
         isPublish,
         address,
     } = req.body;
+    const pics = pic;
     const author = req.session.userInfo.username;
-    const coverImg =  `/${Math.round(Math.random() * 9 + 1)}.jpg`;
-    // const coverImg = `/1.jpg`;
+    const coverImg =  `/upload/${pic[0].split('/')[9]}`;
+    pic = [];
     const viewCount = 0;
     const commentCount = 0;
     let tempArticle = new Article({
@@ -31,6 +35,7 @@ router.post('/addArticle', function (req, res) {
         coverImg,
         tags:tags.split(','),
         address,
+        pics,   
     });
     tempArticle.save().then(data=>{
         responseClient(res,200,0,'发布成功',data)
@@ -39,12 +44,41 @@ router.post('/addArticle', function (req, res) {
         responseClient(res);
     });
 });
-router.post('/upload',(req, res)=>{
-    console.log('========REQUEST============')
-    console.log(req);
-    console.log('++++++++RESPONSE++++++++++++');
-    console.log(res);
+router.post('/upload',(req, res,next)=>{
+    var form = new formidable.IncomingForm();
+    form.uploadDir = path.join(__dirname,'../../static/upload');
+    form.keepExtensions = true;
+    form.parse(req,function (err,fileds,files){
+       if(err) next(err);
+       res.send({status:200,data:'',msg:'success'});
+    });
+    form.on('file', function(name, file) {
+        url = file.path;
+        pic.push(url);
+    });
+    form.on('end',function(){
+        console.log('eeeeeeeeend')
+    })
 });
+
+router.post('/comments',(req,res)=>{
+    const info = req.body;
+    const id = info.id;
+    const comment = info.comment;
+    const commentCount = info.commentCount;
+    const createAt = Date.now();
+    const user = req.session.userInfo.username;
+    Article.update({_id:id},{$push:{
+        comments:{user:user,content:content,createAt:createAt}
+    }}).then(result=>{
+        responseClient(res,200,0,'评论成功',result)
+    }).cancel(err=>{
+        console.log(err);
+        responseClient(res);
+    });
+});
+
+
 router.post('/updateArticle',(req,res)=>{
     const {
         title,
@@ -56,7 +90,11 @@ router.post('/updateArticle',(req,res)=>{
         id,
         address,
     } = req.body;
-    Article.update({_id:id},{title,price,address,content,time,tags:tags.split(','),isPublish})
+    const pics = pic;
+    const coverImg =  `/upload/${pic[0].split('/')[9]}`;
+    console.log(pic);
+    pic = [];
+    Article.update({_id:id},{title,price,address,coverImg,content,time,tags:tags.split(','),isPublish,pics})
         .then(result=>{
             responseClient(res,200,0,'更新成功',result)
         }).cancel(err=>{

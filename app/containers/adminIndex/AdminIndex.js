@@ -14,7 +14,7 @@ class AdminIndex extends Component {
     render() {
         return(
             <div>
-                <h1 >欢迎来到西安科技大学二手交易平台</h1>
+                <h1 >个人详情</h1>
             </div>
         )
 

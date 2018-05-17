@@ -98,7 +98,7 @@ body {
   font-style: italic;
 }
 
-.comment-createdtime {
+.commentCreatedtime {
   padding-right: 5px;
   position: absolute;
   bottom: 0;
@@ -107,11 +107,11 @@ body {
   font-size: 12px;
 }
 
-.comment:hover .comment-delete {
+.comment:hover .commentDelete {
   color: #00a3cf;
 }
 
-.comment-delete {
+.commentDelete {
   position: absolute;
   right: 0;
   top: 0;
