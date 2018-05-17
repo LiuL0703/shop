@@ -33,7 +33,7 @@ class Home extends Component {
                     />
                     <div className={style.paginationContainer}>
                         <Pagination
-                            defaultPageSize={5}
+                            defaultPageSize={8}
                             onChange={(pageNum) => {
                                 this.props.get_article_list(this.props.match.params.tag || '', pageNum);
                             }}

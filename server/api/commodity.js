@@ -91,7 +91,11 @@ router.post('/updateArticle',(req,res)=>{
         address,
     } = req.body;
     const pics = pic;
-    const coverImg =  `/upload/${pic[0].split('/')[9]}`;
+    if(pic.length !== 0){
+        const coverImg =  `/upload/${pic[0].split('/')[9]}`;
+    }else{
+        const coverImg = '';
+    }
     console.log(pic);
     pic = [];
     Article.update({_id:id},{title,price,address,coverImg,content,time,tags:tags.split(','),isPublish,pics})

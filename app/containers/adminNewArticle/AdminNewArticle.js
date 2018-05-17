@@ -62,7 +62,7 @@ class AdminNewArticle extends Component {
         articleData.price = this.props.price;
         articleData.content = this.props.content;
         articleData.tags = this.props.tags;
-        articleData.time = dateFormat(new Date(), 'yyyy-mm-dd HH:MM:ss');
+        articleData.time = dateFormat(new Date(), 'yyyy-mm-dd');
         articleData.isPublish = true;
         articleData.address = this.props.address;
         articleData.pics = this.props.pics;
@@ -78,7 +78,7 @@ class AdminNewArticle extends Component {
         articleData.tags = this.props.tags;
         articleData.address = this.props.address;
         articleData.pics = this.props.pics;
-        articleData.time = dateFormat(new Date(), 'yyyy-mm-dd HH:MM:ss');
+        articleData.time = dateFormat(new Date(), 'yyyy-mm-dd');
         articleData.isPublish = false;
         this.props.save_article(articleData);
     };

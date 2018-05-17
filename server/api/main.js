@@ -28,7 +28,7 @@ router.get('/getArticles', function (req, res) {
     if (isPublish === 'false') {
         searchCondition = null
     }
-    let skip = (req.query.pageNum - 1) < 0 ? 0 : (req.query.pageNum - 1) * 5;
+    let skip = (req.query.pageNum - 1) < 0 ? 0 : (req.query.pageNum - 1) * 8;
     let responseData = {
         total: 0,
         list: []
@@ -38,7 +38,7 @@ router.get('/getArticles', function (req, res) {
             responseData.total = count;
             Article.find(searchCondition, '_id title price address isPublish author viewCount commentCount time coverImg', {
                 skip: skip,
-                limit: 5
+                limit: 8
             })
                 .then(result => {
                     responseData.list = result;

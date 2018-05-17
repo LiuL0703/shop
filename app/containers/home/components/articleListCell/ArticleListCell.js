@@ -36,9 +36,6 @@ export const ArticleListCell = (props)=>(
                         {props.data.commentCount}
                     </span>
                 </p>
-                <span className={style.lastSpan}>
-                    查看详情 <span> >> </span>
-                </span>
             </div>
         </div>
     </div>

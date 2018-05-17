@@ -15,7 +15,9 @@ import {actions} from '../../reducers/adminManagerTags'
 import {actions as FrontActinos} from '../../reducers/frontReducer'
 import Login from "../home/components/login/Login";
 import {Logined} from "../home/components/logined/Logined";
-import {actions as IndexActions} from '../../reducers/index'
+import {actions as IndexActions} from '../../reducers/index';
+import { Input } from 'antd';
+const Search = Input.Search;
 const {get_all_tags} = actions;
 const {get_article_list} = FrontActinos;
 
@@ -31,6 +33,7 @@ class Front extends Component{
             <div>
                 <div>
                     <Banner/>
+                    <Search className={style.searchInput} placeholder="输入想要查找的关键字" enterButton="查找" size="large" />
                     <Menus getArticleList={(tag)=>this.props.get_article_list(tag,1)} categories={this.props.categories} history={this.props.history}/>
                 </div>
                 <div className={style.container}>
