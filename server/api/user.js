@@ -43,7 +43,7 @@ router.post('/login', (req, res) => {
 
 
 router.post('/register', (req, res) => {
-    let {userName, password, passwordRe} = req.body;
+    let {userName, password, passwordRe,type} = req.body;
     if (!userName) {
         responseClient(res, 400, 2, '用户名不可为空');
         return;
@@ -67,7 +67,7 @@ router.post('/register', (req, res) => {
             let user = new User({
                 username: userName,
                 password: md5(password + MD5_SUFFIX),
-                type: 'user'
+                type: type
             });
             user.save()
                 .then(function () {

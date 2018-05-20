@@ -23,6 +23,7 @@ class Comment extends Component {
     }
     _updateTimeString(){
         const comment = this.props.comment;
+        const username = this.props.username;
         const duration = (+Date.now() - comment.createdTime) / 1000
         this.setState({
             timeString:duration>60
@@ -46,7 +47,7 @@ class Comment extends Component {
         return (
         <div className={style.comment}>
             <div className={style.commentUsername}>
-            <span>{this.props.comment.username}admin </span>：
+            <span>{localStorage.getItem('username')}</span>：
             </div>
             <p dangerouslySetInnerHTML={{
             __html: this._getProcessedContent(this.props.comment.content)

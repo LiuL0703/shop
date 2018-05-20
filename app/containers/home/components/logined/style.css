@@ -7,9 +7,13 @@
     padding-top: 20px;
     background-color: #fff;
 }
+.admin{
+    background: #fff;
+    text-align: center;
+}
 .container>div{
     width: 50%;
-    background: #eee;
+    background: #fff;
 
 }
 .container p:nth-child(2){

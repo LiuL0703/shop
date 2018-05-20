@@ -25,15 +25,20 @@ class Front extends Component{
     constructor(props){
         super(props);
     }
-
+    handleChange(value){
+        console.log(value);
+        console.log(this.props.get_all_tags());
+    }
     render(){
         const {url} = this.props.match;
         const {login, register} = this.props;
+        localStorage.setItem('username',this.props.userInfo.username);
+        localStorage.setItem('userId',this.props.userInfo.userId);
         return(
             <div>
                 <div>
                     <Banner/>
-                    <Search className={style.searchInput} placeholder="输入想要查找的关键字" enterButton="查找" size="large" />
+                    <Search className={style.searchInput} placeholder="输入想要查找的关键字" size="large" onSearch={(value)=>this.handleChange.bind(this)(value)} />
                     <Menus getArticleList={(tag)=>this.props.get_article_list(tag,1)} categories={this.props.categories} history={this.props.history}/>
                 </div>
                 <div className={style.container}>

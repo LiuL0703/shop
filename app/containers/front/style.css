@@ -7,7 +7,6 @@
 .loginContainer{
     flex:1;
     margin-left: 10px;
-    display: none;
 }
 .container{
     display: flex;
@@ -16,8 +15,8 @@
     background: #eee;
 }
 .content{
-    width: 500px;
-    display: flex;
+    width: 570px;
+    /* display: flex; */
     flex-direction: row;
 }
 .searchInput{

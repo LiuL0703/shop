@@ -19,7 +19,7 @@ module.exports = new mongoose.Schema({
     pics:Array, // 上传图片 
     comments:[{
         user:String,
-        content:String,
+        comment:String,
         createAt:String
     }],         // 评论   
 });

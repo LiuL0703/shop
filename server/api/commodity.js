@@ -5,6 +5,7 @@ import Article from '../../models/commodity'
 import {responseClient} from '../util'
 const path = require('path');
 const formidable = require('formidable');
+const mongoose = require('mongoose');
 var pic = [];
 var url = '';
 router.post('/addArticle', function (req, res) {
@@ -57,19 +58,20 @@ router.post('/upload',(req, res,next)=>{
         pic.push(url);
     });
     form.on('end',function(){
-        console.log('eeeeeeeeend')
+        // do something
     })
 });
 
 router.post('/comments',(req,res)=>{
     const info = req.body;
-    const id = info.id;
-    const comment = info.comment;
-    const commentCount = info.commentCount;
-    const createAt = Date.now();
-    const user = req.session.userInfo.username;
+    const id = mongoose.Types.ObjectId(info.id);
+    const content = info.content;
+    // const commentCount = info.commentCount;
+    const createAt = info.createdTime;
+    const username = req.session.userInfo.username;
+    console.log(info);
     Article.update({_id:id},{$push:{
-        comments:{user:user,content:content,createAt:createAt}
+        comments:{user:username,comment:content,createAt:createAt}
     }}).then(result=>{
         responseClient(res,200,0,'评论成功',result)
     }).cancel(err=>{
@@ -94,7 +96,7 @@ router.post('/updateArticle',(req,res)=>{
     if(pic.length !== 0){
         const coverImg =  `/upload/${pic[0].split('/')[9]}`;
     }else{
-        const coverImg = '';
+        const coverImg = '/static/1.jpg';
     }
     console.log(pic);
     pic = [];

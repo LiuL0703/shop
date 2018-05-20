@@ -6,9 +6,11 @@ export const Logined = (props) => (
     <div className={style.container}>
         <img src={require('./timg.jpeg')}/>
         <p className={style.center}>{props.userInfo.username}</p>
-        <p className={style.center}>普通会员</p>
-        <p className={style.center}>积分：1000</p>
         {props.userInfo.userType === 'admin' ?
-            <Button onClick={() => props.history.push('/admin')} type="primary">发布物品</Button> : null}
+            <div className={style.admin}>
+            <p className={style.center}>普通会员</p>
+            <p className={style.center}>积分：1000</p>
+            <Button onClick={() => props.history.push('/admin')} type="primary">发布物品</Button>
+            </div> : null}
     </div>
 );

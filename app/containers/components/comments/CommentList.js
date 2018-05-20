@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import Comment from './Comment'
 import {PropTypes} from 'prop-types'
 
+// const data = JSON.parse(localStorage.getItem('comments'));
 class CommentList extends Component {
     static propTypes = {
         comments:PropTypes.array,
@@ -17,6 +18,7 @@ class CommentList extends Component {
             this.props.onDeleteComment(index)
         }
     }
+    
     render() {
         return (
         <div>

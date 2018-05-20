@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import {PropTypes} from 'prop-types'
 import style from './index.css'
-
+import {post} from '../../../fetch/fetch';
 class CommentInput extends Component {
     static propTypes = {
         onSubmit: PropTypes.func
@@ -9,9 +9,22 @@ class CommentInput extends Component {
     constructor () {
         super()
         this.state = {
-        content: ''
+            username:'',
+            content: ''
         }
     }
+    componentWillMount() {
+        this._loadUsername();
+    }
+    _loadUsername(){
+        const username = localStorage.getItem('username');
+        if(username){
+            this.setState({
+                username
+            })
+        }
+    }
+
     componentDidMount() {
         this.textarea.focus()
     }
@@ -22,13 +35,26 @@ class CommentInput extends Component {
     }
 
     handleSubmit () {
-        if (this.props.onSubmit) {
-        this.props.onSubmit({
-            content: this.state.content,
-            createdTime:+new Date()
-        })
+        const id = localStorage.getItem('userId');
+        if(localStorage.getItem('username')=='undefined'){
+            alert('未注册，不能评论，请注册');
+            return false;
         }
-        this.setState({ content: '' })
+        var data = {
+            id:id,
+            username:this.state.username,
+            content:this.state.content,
+            createdTime:+new Date()
+        }
+        if (this.props.onSubmit) {
+            this.props.onSubmit({
+                userInfo:this.state.username,
+                content: this.state.content,
+                createdTime:+new Date()
+            })
+        }
+        this.setState({ content: '' });
+        post('/admin/article/comments',data);
     }
 
     render () {
