@@ -46,7 +46,7 @@ class Comments extends Component {
 			<CommentList 
 				onDeleteComment={this.handleDeleteComment.bind(this)}
 				comments={this.state.comments}
-				username={this.state.username}
+				username={localStorage.getItem('username')}
 			/>
 			<CommentInput onSubmit={this.handleSubmitComment.bind(this)} />
 			

@@ -47,7 +47,7 @@ class Comment extends Component {
         return (
         <div className={style.comment}>
             <div className={style.commentUsername}>
-            <span>{localStorage.getItem('username')}</span>：
+            <span>{this.props.comment.userInfo}</span>：
             </div>
             <p dangerouslySetInnerHTML={{
             __html: this._getProcessedContent(this.props.comment.content)

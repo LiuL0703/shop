@@ -17,6 +17,7 @@ router.post('/addArticle', function (req, res) {
         tags,
         isPublish,
         address,
+        quality,
     } = req.body;
     const pics = pic;
     const author = req.session.userInfo.username;
@@ -36,7 +37,8 @@ router.post('/addArticle', function (req, res) {
         coverImg,
         tags:tags.split(','),
         address,
-        pics,   
+        pics,
+        quality,   
     });
     tempArticle.save().then(data=>{
         responseClient(res,200,0,'发布成功',data)
@@ -55,6 +57,7 @@ router.post('/upload',(req, res,next)=>{
     });
     form.on('file', function(name, file) {
         url = file.path;
+        url ="../../../static/upload/" + url.split('/')[9];
         pic.push(url);
     });
     form.on('end',function(){
@@ -69,7 +72,7 @@ router.post('/comments',(req,res)=>{
     // const commentCount = info.commentCount;
     const createAt = info.createdTime;
     const username = req.session.userInfo.username;
-    console.log(info);
+    // console.log(info);
     Article.update({_id:id},{$push:{
         comments:{user:username,comment:content,createAt:createAt}
     }}).then(result=>{
@@ -91,6 +94,7 @@ router.post('/updateArticle',(req,res)=>{
         isPublish,
         id,
         address,
+        quality,
     } = req.body;
     const pics = pic;
     if(pic.length !== 0){
@@ -99,8 +103,9 @@ router.post('/updateArticle',(req,res)=>{
         const coverImg = '/static/1.jpg';
     }
     console.log(pic);
+    // localStorage.setItem('userId',id);
     pic = [];
-    Article.update({_id:id},{title,price,address,coverImg,content,time,tags:tags.split(','),isPublish,pics})
+    Article.update({_id:id},{title,price,address,quality,coverImg,content,time,tags:tags.split(','),isPublish,pics})
         .then(result=>{
             responseClient(res,200,0,'更新成功',result)
         }).cancel(err=>{

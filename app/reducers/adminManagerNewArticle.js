@@ -8,6 +8,7 @@ const initialState={
     id:'',
     address:'',
     pics:[],
+    quality:'',
 };
 export const actionTypes = {
     UPDATING_TITLE:"UPDATING_TITLE",
@@ -18,6 +19,7 @@ export const actionTypes = {
     SET_ARTICLE_ID:"SET_ARTICLE_ID",
     UPDATING_ADDRESS:"UPDATING_ADDRESS",
     UPDATING_PICS:"UPDATING_PICS",
+    UPDATING_QUALITY:"UPDATING_QUALITY",
 };
 export const actions = {
     update_title:function (title) {
@@ -59,6 +61,12 @@ export const actions = {
             pics
         } 
     },
+    update_quality:function(quality){
+        return{
+            type:actionTypes.UPDATING_QUALITY,
+            quality
+        }
+    },
     save_article:function (data) {
         return{
             type:actionTypes.SAVE_ARTICLE,
@@ -97,6 +105,10 @@ export function reducer(state=initialState,action) {
         case actionTypes.UPDATING_PICS:
             return{
                 ...state,pics:action.pics
+            };
+        case actionTypes.UPDATING_QUALITY:
+            return{
+                ...state,quality:action.quality
             }; 
         default:
             return state;

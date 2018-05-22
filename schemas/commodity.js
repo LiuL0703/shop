@@ -22,4 +22,9 @@ module.exports = new mongoose.Schema({
         comment:String,
         createAt:String
     }],         // 评论   
+    point:{   // 积分
+        type:Number,
+        default:10
+    },
+    quality:Number, // 成色
 });

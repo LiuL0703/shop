@@ -20,14 +20,16 @@ class CommentList extends Component {
     }
     
     render() {
+        console.log(this.props.comments);
         return (
         <div>
             {this.props.comments.map((comment, i) =>
+            localStorage.getItem('userId')==comment.id?
             <Comment 
                 index={i}
                 onDeleteComment={this.handleDeleteComment.bind(this)}
                 comment={comment} 
-                key={i} />
+                key={i} />:null
             )}
         </div>
         )

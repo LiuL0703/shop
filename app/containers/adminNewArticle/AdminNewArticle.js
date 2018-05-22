@@ -3,14 +3,14 @@ import PureRenderMixin from 'react-addons-pure-render-mixin'
 import {bindActionCreators} from 'redux'
 import {connect} from 'react-redux'
 import style from './style.css'
-import {Input, Select, Button, Modal} from 'antd';
+import {Input, Select, Button, Modal,InputNumber} from 'antd';
 import {actions} from "../../reducers/adminManagerNewArticle";
 import {actions as tagActions} from "../../reducers/adminManagerTags";
 import dateFormat from 'dateformat'
 import PicturesWall from "../components/picwall/index"
 
 const {get_all_tags} = tagActions;
-const {update_content, update_tags, update_title,update_price,update_address,update_pics ,save_article} = actions;
+const {update_content, update_tags, update_title,update_price,update_address,update_pics ,save_article,update_quality} = actions;
 const Option = Select.Option;
 
 class AdminNewArticle extends Component {
@@ -37,7 +37,10 @@ class AdminNewArticle extends Component {
     priceOnChange(e){
         this.props.update_price(e.target.value)
     };
-
+    // 成色
+    qualityOnChange(e){
+        this.props.update_quality(e.target.value)
+    }
     // 地址
     addressOnChange(e){
         this.props.update_address(e.target.value)
@@ -66,6 +69,7 @@ class AdminNewArticle extends Component {
         articleData.isPublish = true;
         articleData.address = this.props.address;
         articleData.pics = this.props.pics;
+        articleData.quality = this.props.quality;
         this.props.save_article(articleData);
     };
 
@@ -80,6 +84,7 @@ class AdminNewArticle extends Component {
         articleData.pics = this.props.pics;
         articleData.time = dateFormat(new Date(), 'yyyy-mm-dd');
         articleData.isPublish = false;
+        articleData.quality = this.props.quality;
         this.props.save_article(articleData);
     };
 
@@ -123,6 +128,15 @@ class AdminNewArticle extends Component {
                         type='text'
                         value={this.props.price}
                         onChange={this.priceOnChange.bind(this)}/>
+                    <span className={style.subTitle}>物品成色</span>
+                    <InputNumber
+                        className={style.titleInput}
+                        placeholder={'物品成色'}
+                        type='number'
+                        max={10}
+                        min={5}
+                        value={this.props.quality}
+                        onChange={this.qualityOnChange.bind(this)}/>
                     <span className={style.subTitle}>交易地点</span>
                     <Input
                         className={style.titleInput}
@@ -164,6 +178,7 @@ AdminNewArticle.propsTypes = {
     tags: PropTypes.array,
     tagsBase: PropTypes.array,
     address:PropTypes.string,
+    quality:PropTypes.number,
 };
 
 AdminNewArticle.defaultProps = {
@@ -174,10 +189,11 @@ AdminNewArticle.defaultProps = {
     tagsBase: [],
     address:'',
     pics:[],
+    quality:'',
 };
 
 function mapStateToProps(state) {
-    const {title,price,address,pics,content, tags} = state.admin.newArticle;
+    const {title,price,address,pics,content, tags,quality} = state.admin.newArticle;
     let tempArr = state.admin.tags;
     for (let i = 0; i < tempArr.length; i++) {
         if (tempArr[i] === '首页') {
@@ -191,7 +207,8 @@ function mapStateToProps(state) {
         tags,
         address,
         pics,
-        tagsBase: tempArr
+        tagsBase: tempArr,
+        quality,
     }
 }
 
@@ -205,6 +222,7 @@ function mapDispatchToProps(dispatch) {
         save_article: bindActionCreators(save_article, dispatch),
         update_address: bindActionCreators(update_address, dispatch),
         update_pics: bindActionCreators(update_pics, dispatch),
+        update_quality:bindActionCreators(update_quality, dispatch),
     }
 }
 

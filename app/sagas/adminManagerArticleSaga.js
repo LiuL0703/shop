@@ -90,12 +90,14 @@ export function* editArticleFlow () {
                 let id = res.data._id;
                 let price = res.data.price;
                 let address = res.data.address;
+                let quality = res.data.quality;
                 yield put({type:NewArticleTypes.UPDATING_ADDRESS,address});
                 yield put({type:NewArticleTypes.SET_ARTICLE_ID,id});
                 yield put({type:NewArticleTypes.UPDATING_TAGS,tags});
                 yield put({type:NewArticleTypes.UPDATING_CONTENT,content});
                 yield put({type:NewArticleTypes.UPDATING_TITLE,title});
                 yield put({type:NewArticleTypes.UPDATING_PRICE,price});
+                yield put({type:NewArticleTypes.UPDATING_QUALITY,quality});
             } else {
                 yield put({type: IndexActionTypes.SET_MESSAGE, msgContent: res.message, msgType: 0});
             }

@@ -36,7 +36,7 @@ router.get('/getArticles', function (req, res) {
     Article.count(searchCondition)
         .then(count => {
             responseData.total = count;
-            Article.find(searchCondition, '_id title price address isPublish author viewCount commentCount time coverImg', {
+            Article.find(searchCondition, '_id title price address quality isPublish author viewCount commentCount time coverImg', {
                 skip: skip,
                 limit: 8
             })
@@ -53,6 +53,7 @@ router.get('/getArticles', function (req, res) {
 //获取物品详情
 router.get('/getArticleDetail', (req, res) => {
     let _id = req.query.id;
+    
    Article.findOne({_id})
        .then(data=>{
            data.viewCount = data.viewCount+1;
