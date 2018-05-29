@@ -18,24 +18,26 @@ class AdminManagerArticle extends Component{
     }
 
     render(){
+        console.log(this.props.articleList)
         return(
             <div>
                 <h2>物品管理</h2>
                 <div className={style.articleListContainer}>
                     {
                         this.props.articleList.map((item,index)=>(
+                            localStorage.getItem('username')==item.author?
                             <ManagerArticleCell
                                 edit_article={(id)=>this.props.edit_article(id)}
                                 history={this.props.history}
                                 getArticleDetail={(id)=>this.props.get_article_detail(id)}
                                 delete={(id)=>this.props.delete_article(id)}
-                                key={index} data={item}/>
+                                key={index} data={item}/>:null
                         ))
                     }
                 </div>
                 <div  className={style.paginationStyle}>
                     <Pagination
-                        defaultPageSize={8}
+                        defaultPageSize={16}
                         onChange={(pageNum)=>{
                             this.props.get_article_list(pageNum);
                         }}

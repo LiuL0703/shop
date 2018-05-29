@@ -37,7 +37,7 @@ class LoginFormCom extends Component {
                     )}
                 </FormItem>
                 <FormItem>
-                    <Button className={style.loginButton} type="primary" htmlType="submit">
+                    <Button className={style.loginButton1} type="primary" htmlType="submit">
                         登录
                     </Button>
                 </FormItem>

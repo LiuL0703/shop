@@ -129,7 +129,7 @@ class AdminNewArticle extends Component {
                         value={this.props.price}
                         onChange={this.priceOnChange.bind(this)}/>
                     <span className={style.subTitle}>物品成色</span>
-                    <InputNumber
+                    <Input
                         className={style.titleInput}
                         placeholder={'物品成色'}
                         type='number'
