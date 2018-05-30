@@ -16,9 +16,7 @@ class AdminManagerArticle extends Component{
         super(props);
         this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this)
     }
-
     render(){
-        console.log(this.props.articleList)
         return(
             <div>
                 <div className={style.articleListContainer}>
