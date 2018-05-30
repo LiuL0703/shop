@@ -1,13 +1,16 @@
 import React, {Component} from 'react'
 import {Menu, Icon} from 'antd'
+import style from './style.css'
 
 const menus = [
-    {url: '/', name: '首页', iconType: 'home'},
     // {url: '/managerUser', name: '用户管理', iconType: 'usergroup-delete'},
-    {url: '/newArticle', name: '发布物品', iconType: 'file-text'},
+    {url: '/newArticle', name: '发布物品', iconType: 'inbox'},
     // {url: '/managerTags', name: '标签管理', iconType: 'tags-o'},
-    {url: '/managerArticle', name: '物品管理', iconType: 'edit'},
+    {url: '/managerArticle', name: '物品管理', iconType: 'shopping-cart'},
+    {url: '/', name: '', iconType: 'home'},
 ];
+
+
 export default class AdminMenu extends Component {
     constructor(props) {
         super(props)
@@ -15,11 +18,11 @@ export default class AdminMenu extends Component {
 
     render() {
         return (
-            <div>
+            <div className={style.menus}>
                 <Menu
                     selectedKeys={[this.props.url]}
                     mode="inline"
-                    theme="dark"
+                    theme="light"
                     onClick={({key}) => {
                         this.props.changeUrl(key);
                         this.props.history.push(`/admin${key}`)
@@ -32,7 +35,9 @@ export default class AdminMenu extends Component {
                                 <span>{item.name}</span>
                             </Menu.Item>)
                     }
+                   
                 </Menu>
+            
             </div>
         )
     }

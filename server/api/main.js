@@ -4,7 +4,6 @@ import Article from '../../models/commodity'
 import {responseClient} from '../util'
 
 const router = Express.Router();
-
 router.use('/user', require('./user'));
 //获取全部标签
 router.get('/getAllTags', function (req, res) {
@@ -28,7 +27,7 @@ router.get('/getArticles', function (req, res) {
     if (isPublish === 'false') {
         searchCondition = null
     }
-    let skip = (req.query.pageNum - 1) < 0 ? 0 : (req.query.pageNum - 1) * 8;
+    let skip = (req.query.pageNum - 1) < 0 ? 0 : (req.query.pageNum - 1) * 16;
     let responseData = {
         total: 0,
         list: []
@@ -38,7 +37,7 @@ router.get('/getArticles', function (req, res) {
             responseData.total = count;
             Article.find(searchCondition, '_id title price address quality isPublish author viewCount commentCount time coverImg', {
                 skip: skip,
-                limit: 8
+                limit: 16
             })
                 .then(result => {
                     responseData.list = result;

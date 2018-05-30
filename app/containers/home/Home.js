@@ -19,6 +19,7 @@ class Home extends Component {
 
     render() {
         const {tags} = this.props;
+        console.log(this.props.articleList);
         // localStorage.setItem('userInfo', JSON.stringify(this.props.userInfo));
         return (
             tags.length > 1 && this.props.match.params.tag && (tags.indexOf(this.props.match.params.tag) === -1 || this.props.location.pathname.lastIndexOf('\/') > 0)
@@ -33,7 +34,7 @@ class Home extends Component {
                     />
                     <div className={style.paginationContainer}>
                         <Pagination
-                            defaultPageSize={8}
+                            defaultPageSize={16}
                             onChange={(pageNum) => {
                                 this.props.get_article_list(this.props.match.params.tag || '', pageNum);
                             }}

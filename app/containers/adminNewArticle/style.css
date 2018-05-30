@@ -16,7 +16,7 @@
     border:solid thin #ddd;
     margin:10px 0;
     height: 100px;
-    width: 60%;
+    width: 40%;
 }
 .subTitle{
     color: #373737;
@@ -26,6 +26,7 @@
 
 .container{
     margin-top: 10px;
+    margin-left: 50px;
 }
 .titleInput{
     width: 40% !important;
@@ -51,4 +52,10 @@
 .modalContainer{
     height: 500px;
     overflow: scroll;
+}
+
+.articleTitle{
+    font-size: 25px;
+    margin-bottom: 20px;
+    margin-left: 150px;
 }

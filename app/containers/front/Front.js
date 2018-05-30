@@ -27,7 +27,8 @@ class Front extends Component{
     }
     handleChange(value){
         console.log(value);
-        console.log(this.props.get_all_tags());
+        console.log(this.props.get_article_list());
+        localStorage.setItem('searchValue',value);
     }
     render(){
         const {url} = this.props.match;

@@ -1,17 +1,20 @@
 .articleListContainer {
     margin-top: 10px;
     height: 600px;
-    overflow: scroll;
 }
 .paginationStyle{
     margin-top: 20px;
     text-align: center;
 }
 .cellContainer{
-    border-bottom: solid thin #ddd;
+    border: solid thin #ddd;
     display: flex;
     flex-direction: row;
-    height: 80px;
+    height: 120px;
+    padding: 20px;
+    margin: 20px;
+    box-shadow: 10px 10px 5px #cecbcb;
+    width: 650px;
 }
 .cellAboutArticle{
     display: flex;
@@ -33,14 +36,23 @@
     align-items: center;
     justify-content: space-around;
 }
+.cellOperation button{
+    margin-left:10px;
+}
 .articleTitle{
     margin-bottom: 10px;
-    font-size: 15px;
-    color: #000;
+    font-size: 20px;
+    color: #09a5b5;
 }
 .articleInfo span{
     font-size: 12px;
     margin-right: 10px;
     display: inline-block;
-    color: #6b6b6b;
+    color: #00000087;
+}
+.articleTitles{
+    color:#00000087;
+    text-align: center;
+    width: 800px;
+    font-size: 28px;    
 }

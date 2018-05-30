@@ -98,7 +98,6 @@ class AdminNewArticle extends Component {
     render() {
         return (
             <div>
-                <h2>发布物品</h2>
                 <div className={style.container}>
                     <span className={style.subTitle}>物品名称</span>
                     <Input

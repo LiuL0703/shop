@@ -21,7 +21,6 @@ class AdminManagerArticle extends Component{
         console.log(this.props.articleList)
         return(
             <div>
-                <h2>物品管理</h2>
                 <div className={style.articleListContainer}>
                     {
                         this.props.articleList.map((item,index)=>(

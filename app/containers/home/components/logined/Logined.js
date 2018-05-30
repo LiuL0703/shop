@@ -12,5 +12,6 @@ export const Logined = (props) => (
             <p className={style.center}>积分：1000</p>
             <Button onClick={() => props.history.push('/admin')} type="primary">发布物品</Button>
             </div> : null}
+        <Button className={style.logout} type="default"><a href="/api/user/logout">退出登录</a></Button>
     </div>
 );

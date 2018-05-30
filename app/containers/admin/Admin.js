@@ -31,7 +31,7 @@ class Admin extends Component {
         const {url} = this.props.match;
         if(this.props.userInfo&&this.props.userInfo.userType){
             return (
-                <div>
+                <div >
                     {
                         this.props.userInfo.userType === 'admin' ?
                             <div className={style.container}>
