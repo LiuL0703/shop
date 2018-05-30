@@ -16,7 +16,7 @@ export const ManagerArticleCell = (props)=>(
                 <span>发布者:{props.data.author}</span>
                 <span>被查看:{props.data.viewCount}</span>
                 {/* <span>评论数:{props.data.commentCount}</span> */}
-                <span>发表时间:{props.data.time}</span>
+                <span>发布时间:{props.data.time}</span>
             </p>
         </div>
         <div className={style.cellState}>
@@ -27,8 +27,14 @@ export const ManagerArticleCell = (props)=>(
             
         </div>
         <div className={style.cellOperation}>
-            <Button type='primary' icon="edit" onClick={()=>{props.edit_article(props.data._id);props.history.push('/admin/newArticle')}}>编辑</Button>
-            <Button type='danger' icon="delete" onClick={()=>props.delete(props.data._id)}>撤销</Button>
+            <Button type='primary' icon="gift" onClick={()=>{props.edit_article(props.data._id);props.history.push('/admin/newArticle')}}>编辑</Button>
+            <Button type='danger' icon="delete" onClick={()=>{
+                        if(confirm('是否已出售')){
+                            props.delete(props.data._id);
+                        } 
+                        props.delete(props.data._id)
+                    }
+                }>撤销</Button>
             <Button type='' icon="eye-o" onClick={()=>{props.history.push(`/detail/${props.data._id}`,{id:props.data._id});props.getArticleDetail(props.data._id)}}>查看</Button>
         </div>
     </div>

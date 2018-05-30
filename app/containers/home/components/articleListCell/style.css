@@ -1,11 +1,13 @@
 .container{
     display: flex;
     flex-direction: row;
-    margin-bottom: 10px;
-    height: 150px;
+    margin-bottom: 26px;
+    margin-right: 12px;    
+    height: 155px;
     padding:20px 10px;
     background: #fff;
     cursor: pointer;
+    box-shadow: 10px 10px 5px #888888;
 }
 .container:hover{
     box-shadow: 3px 3px 7px #9a9292;
@@ -38,7 +40,6 @@
 .bottomContainer>div{
     display: flex;
     flex-direction: row;
-    border-top: dashed thin #ddd;
     padding-top: 5px;
     justify-content: space-between;
     align-items: center;
@@ -75,4 +76,9 @@
 }
 .price{
     font-size: 13px;
+}
+.quality{
+    font-size: 12px;
+    margin-left: 104px;
+    color: #b56b6b;
 }

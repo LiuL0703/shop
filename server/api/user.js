@@ -28,6 +28,8 @@ router.post('/login', (req, res) => {
             data.username = userInfo.username;
             data.userType = userInfo.type;
             data.userId = userInfo._id;
+            data.userLevel = userInfo.level;
+            data.points = userInfo.points;
             //登录成功后设置session
             req.session.userInfo = data;
 
@@ -77,6 +79,8 @@ router.post('/register', (req, res) => {
                             data.username = userInfo.username;
                             data.userType = userInfo.type;
                             data.userId = userInfo._id;
+                            data.level = '普通会员';
+                            data.points = 1000;
                             responseClient(res, 200, 0, '注册成功', data);
                             return;
                         });

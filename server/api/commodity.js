@@ -70,7 +70,6 @@ router.post('/upload',(req, res,next)=>{
         var data = 'data:image/jpg;base64,'+ imageBuf.toString("base64");
         pic.push(data);
         fs.unlink(url);
-        console.log('delete'+url);
     })
 });
 // 更新
@@ -127,10 +126,8 @@ router.post('/comments',(req,res)=>{
     // const commentCount = info.commentCount;
     const createAt = info.createdTime;
     const username = req.session.userInfo.username;
-    // console.log(info);
-    Article.update({_id:id},{$push:{
-        comments:{user:username,comment:content,createAt:createAt}
-    }}).then(result=>{
+    const commentCount = info.info.commentCount+1;
+    Article.update({_id:id},{commentCount}).then(result=>{
         responseClient(res,200,0,'评论成功',result)
     }).cancel(err=>{
         console.log(err);

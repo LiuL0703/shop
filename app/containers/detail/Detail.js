@@ -17,12 +17,13 @@ class Detail extends Component{
     
     render(){
         console.log(this.props);
-        const {articleContent,title,author,viewCount,commentCount,time,pics,price} = this.props;
+        const {articleContent,title,author,quality,viewCount,commentCount,time,pics,price} = this.props;
         return(
             pics!=undefined ?
             <div>
                 <div className={style.container}>
                     <h2>{title}</h2>
+                    <p className={style.quality}>【{quality}成新】</p>
                     <p className={style.price}><span>￥</span>{price}</p>
                     <div className={style.articleInfo}>
                         <span >

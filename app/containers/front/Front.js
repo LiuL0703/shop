@@ -26,11 +26,10 @@ class Front extends Component{
         super(props);
     }
     handleChange(value){
-        console.log(value);
-        console.log(this.props.get_article_list());
         localStorage.setItem('searchValue',value);
     }
     render(){
+        console.log(this.props);
         const {url} = this.props.match;
         const {login, register} = this.props;
         localStorage.setItem('username',this.props.userInfo.username);
@@ -39,7 +38,10 @@ class Front extends Component{
             <div>
                 <div>
                     <Banner/>
-                    <Search className={style.searchInput} placeholder="输入想要查找的关键字" size="large" onSearch={(value)=>this.handleChange.bind(this)(value)} />
+                    <div>
+                        <Search className={style.searchInput} placeholder="输入想要查找的关键字" size="large" onSearch={(value)=>this.handleChange.bind(this)(value)} />
+                        <p></p>
+                    </div>
                     <Menus getArticleList={(tag)=>this.props.get_article_list(tag,1)} categories={this.props.categories} history={this.props.history}/>
                 </div>
                 <div className={style.container}>

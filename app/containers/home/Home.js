@@ -19,7 +19,23 @@ class Home extends Component {
 
     render() {
         const {tags} = this.props;
-        console.log(this.props.articleList);
+        var data = [];
+        var searchValue = localStorage.getItem('searchValue');
+        localStorage.setItem('searchValue','');
+        console.log('========')
+        if(searchValue!== undefined){   
+            console.log(searchValue);
+            var reg = new RegExp(searchValue,'gi');
+            data = this.props.articleList.filter((item,index)=>{
+                return reg.test(item.title);
+            });
+        }else if(searchValue == ''){
+            data = this.props.articleList;
+        }else{
+            data = this.props.articleList;
+        }
+        
+        console.log(data);
         // localStorage.setItem('userInfo', JSON.stringify(this.props.userInfo));
         return (
             tags.length > 1 && this.props.match.params.tag && (tags.indexOf(this.props.match.params.tag) === -1 || this.props.location.pathname.lastIndexOf('\/') > 0)
@@ -29,7 +45,7 @@ class Home extends Component {
                 <div className={style.container}>
                     <ArticleList
                         history={this.props.history}
-                        data={this.props.articleList}
+                        data={data}
                         getArticleDetail={this.props.get_article_detail}
                     />
                     <div className={style.paginationContainer}>
