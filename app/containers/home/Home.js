@@ -10,32 +10,32 @@ import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import {actions as frontActions} from '../../reducers/frontReducer'
 const {get_article_list,get_article_detail} = frontActions;
-
+import { Input } from 'antd';
+const Search = Input.Search;
 class Home extends Component {
     constructor(props) {
         super(props);
+        this.state = {
+            data:this.props.articleList
+        }
         this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this)
     }
-
-    render() {
-        const {tags} = this.props;
-        var data = [];
-        var searchValue = localStorage.getItem('searchValue');
-        localStorage.setItem('searchValue','');
-        console.log('========')
-        if(searchValue!== undefined){   
-            console.log(searchValue);
-            var reg = new RegExp(searchValue,'gi');
+    handleChange(value){
+        var reg = new RegExp(value,'gi');
+        var data;
+        if(value!==''){
             data = this.props.articleList.filter((item,index)=>{
                 return reg.test(item.title);
-            });
-        }else if(searchValue == ''){
-            data = this.props.articleList;
+            })
         }else{
-            data = this.props.articleList;
+            data = this.props.articleList
         }
-        
-        console.log(data);
+        this.setState({
+            data:data,
+        })
+    }
+    render() {
+        const {tags} = this.props;
         // localStorage.setItem('userInfo', JSON.stringify(this.props.userInfo));
         return (
             tags.length > 1 && this.props.match.params.tag && (tags.indexOf(this.props.match.params.tag) === -1 || this.props.location.pathname.lastIndexOf('\/') > 0)
@@ -43,9 +43,16 @@ class Home extends Component {
                 <Redirect to='/404'/>
                 :
                 <div className={style.container}>
+                    <div className={style.searchDiv}>
+                        <Search 
+                            className={style.searchInput} 
+                            placeholder="输入想要查找的关键字" 
+                            size="large" 
+                            onSearch={(value)=>this.handleChange.bind(this)(value)} />
+                    </div>
                     <ArticleList
                         history={this.props.history}
-                        data={data}
+                        data={this.state.data}
                         getArticleDetail={this.props.get_article_detail}
                     />
                     <div className={style.paginationContainer}>
@@ -60,7 +67,7 @@ class Home extends Component {
                 </div>
         )
     }
-
+    
     componentDidMount() {
         this.props.get_article_list(this.props.match.params.tag || '')
     }

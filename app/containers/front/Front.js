@@ -24,9 +24,33 @@ const {get_article_list} = FrontActinos;
 class Front extends Component{
     constructor(props){
         super(props);
+        this.state = {
+            isPrice:false,
+            isQuality:false,
+        }
+        this.handleChangePrice = this.handleChangePrice.bind(this);
+        this.handleChangeQuality = this.handleChangeQuality.bind(this);
     }
     handleChange(value){
         localStorage.setItem('searchValue',value);
+    }
+
+    handleChangePrice(event){
+        var value = event.target.checked;
+        console.log(value); 
+        localStorage.setItem('isPrice',value);
+        this.setSatae({
+            isPrice:!value
+        })
+    }
+
+    handleChangeQuality(event){
+        var value = event.target.checked;
+        console.log(value); 
+        localStorage.setItem('isQuality',value);
+        this.setSatae({
+            isQuality:!value
+        })
     }
     render(){
         console.log(this.props);
@@ -38,10 +62,25 @@ class Front extends Component{
             <div>
                 <div>
                     <Banner/>
-                    <div>
+                    {/* <div>
                         <Search className={style.searchInput} placeholder="输入想要查找的关键字" size="large" onSearch={(value)=>this.handleChange.bind(this)(value)} />
-                        <p></p>
-                    </div>
+                        <p>
+                            <span className={style.price}>按价格：从高到低
+                                <input 
+                                    type='checkbox'
+                                    name="isPrice"
+                                    checked = {this.state.isPrice}
+                                    onChange={this.handleChangePrice}/>
+                            </span>
+                            <span className={style.quality}>按成色：由新到旧
+                                <input 
+                                    type="checkbox"
+                                    name="isQuality" 
+                                    checked = {this.state.isQuality}
+                                    onChange={this.handleChangeQuality}/>
+                            </span>
+                        </p>
+                    </div> */}
                     <Menus getArticleList={(tag)=>this.props.get_article_list(tag,1)} categories={this.props.categories} history={this.props.history}/>
                 </div>
                 <div className={style.container}>
