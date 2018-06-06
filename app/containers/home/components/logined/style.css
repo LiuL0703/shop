@@ -6,6 +6,7 @@
     flex-direction: column;
     padding-top: 20px;
     background-color: #fff;
+    box-shadow: 12px 12px 8px #888888;
 }
 .admin{
     background: #fff;

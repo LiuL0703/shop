@@ -34,7 +34,7 @@ class Front extends Component{
             <div>
                 <div>
                     {/* <Banner/> */}
-                    <div><img className={style.logo} src={require('../../../static/logo_school.png')} /><h1 className={style.names}>校内二手交易平台</h1></div>
+                    <div><img className={style.logo} src={require('../../../static/logo_school.png')} /><img className={style.logo_name} src={require('../../../static/logo_name.png')} /></div>
                     <Menus getArticleList={(tag)=>this.props.get_article_list(tag,1)} categories={this.props.categories} history={this.props.history}/>
                     
                 </div>

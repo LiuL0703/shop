@@ -41,3 +41,9 @@
     margin: 0 auto;
     padding-top: 13px;
 }
+.logo_name{
+    display:block;
+    width: 20%;
+    margin: 15px auto;
+    padding-left: 20px;
+}

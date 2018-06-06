@@ -14,3 +14,6 @@
     margin-bottom: 20px;
     box-shadow: 10px 10px 5px #888888;
 }
+.sorted span{
+    cursor: pointer;
+}
