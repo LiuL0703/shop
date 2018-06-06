@@ -45,7 +45,7 @@ export default class PicturesWall extends Component {
           onChange={this.handleChange}
           multiple={true}
         >
-          {fileList.length >= 3 ? null : uploadButton}
+          {fileList.length >= 5 ? null : uploadButton}
         </Upload>
         <Modal visible={previewVisible} footer={null} onCancel={this.handleCancel}>
           <img alt="example" style={{ width: '100%' }} src={previewImage} />

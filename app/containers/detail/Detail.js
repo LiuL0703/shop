@@ -48,6 +48,12 @@ class Detail extends Component{
                        {
                            pics[2] !==undefined ?<img src={pics[2]} key='3' />:null
                        } 
+                       {
+                           pics[3] !==undefined ?<img src={pics[2]} key='4' />:null
+                       } 
+                       {
+                           pics[4] !==undefined ?<img src={pics[2]} key='5' />:null
+                       } 
                     </div>
                 </div>
                 <Comments />

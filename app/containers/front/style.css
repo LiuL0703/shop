@@ -30,3 +30,14 @@
 .searchInput input{
     font-size: 14px;
 }
+.names{
+    text-align: center;
+    margin: 34px auto;
+    font-size: 32px;
+    margin-top:8px;
+}
+.logo{
+    display: block;
+    margin: 0 auto;
+    padding-top: 13px;
+}

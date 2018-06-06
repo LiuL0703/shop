@@ -9,6 +9,8 @@ export default class ArticleList extends Component{
     }
 
     render(){
+        console.log('======list====')
+        console.log(this.props.data);
         return(
             <div>
                 {

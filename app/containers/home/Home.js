@@ -10,13 +10,15 @@ import {connect} from 'react-redux'
 import {bindActionCreators} from 'redux'
 import {actions as frontActions} from '../../reducers/frontReducer'
 const {get_article_list,get_article_detail} = frontActions;
-import { Input } from 'antd';
+import { Input,Icon } from 'antd';
 const Search = Input.Search;
 class Home extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            data:this.props.articleList
+            data:this.props.articleList,
+            sortByPrice:true,
+            sortByQuality:false,
         }
         this.shouldComponentUpdate = PureRenderMixin.shouldComponentUpdate.bind(this)
     }
@@ -25,18 +27,45 @@ class Home extends Component {
         var data;
         if(value!==''){
             data = this.props.articleList.filter((item,index)=>{
-                return reg.test(item.title);
-            })
+                return item.title.indexOf(value)!== -1;
+            });
+            console.log('=========')
+            console.log(this.props.articleList)
+            console.log(data);
         }else{
             data = this.props.articleList
+        }
+        if(this.state.sortByPrice){
+            data.sort((a,b)=>{
+                return b.price - a.price;
+            })
+        }else{
+            data.sort((a,b)=>{
+                return a.price - b.price;
+            })
+        }
+        if(this.state.sortByQuality){
+            data.sort((a,b)=>{
+                return b.quality - a.quality;
+            })
         }
         this.setState({
             data:data,
         })
     }
+    handlePrice(){
+        this.setState({
+            sortByPrice:!this.state.sortByPrice
+        })
+    }
+    handleQuality(){
+        this.setState({
+            sortByQuality:!this.state.sortByQuality
+        })
+    }
     render() {
         const {tags} = this.props;
-        // localStorage.setItem('userInfo', JSON.stringify(this.props.userInfo));
+        console.log(this.state.data);
         return (
             tags.length > 1 && this.props.match.params.tag && (tags.indexOf(this.props.match.params.tag) === -1 || this.props.location.pathname.lastIndexOf('\/') > 0)
                 ?
@@ -49,6 +78,10 @@ class Home extends Component {
                             placeholder="输入想要查找的关键字" 
                             size="large" 
                             onSearch={(value)=>this.handleChange.bind(this)(value)} />
+                        <div className={style.sorted}>
+                            <span onClick={this.handlePrice.bind(this)}>{this.state.sortByPrice? <Icon type="arrow-up" />: <Icon type="arrow-down" />}按价格排序</span>
+                            <span onClick={this.handleQuality.bind(this)}>{this.state.sortByQuality? <Icon type="arrow-up" />: <Icon type="arrow-down" />}按成色排序</span>
+                        </div>
                     </div>
                     <ArticleList
                         history={this.props.history}

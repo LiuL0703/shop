@@ -126,13 +126,13 @@ router.post('/comments',(req,res)=>{
     // const commentCount = info.commentCount;
     const createAt = info.createdTime;
     const username = req.session.userInfo.username;
-    const commentCount = info.info.commentCount+1;
-    Article.update({_id:id},{commentCount}).then(result=>{
-        responseClient(res,200,0,'评论成功',result)
-    }).cancel(err=>{
-        console.log(err);
-        responseClient(res);
-    });
+    // const commentCount = info.info.commentCount+1;
+    // Article.update({_id:id},{commentCount}).then(result=>{
+    //     responseClient(res,200,0,'评论成功',result)
+    // }).cancel(err=>{
+    //     console.log(err);
+    //     responseClient(res);
+    // });
 });
 
 module.exports = router;
