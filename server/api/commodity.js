@@ -46,7 +46,13 @@ router.post('/addArticle', function (req, res) {
         quality,   
     });
     tempArticle.save().then(data=>{
-        responseClient(res,200,0,'发布成功',data)
+        let msg = '';
+        if(isPublish){
+            msg = '发布成功'
+        }else{
+            msg = '保存成功'
+        }
+        responseClient(res,200,0,msg,data)
     }).cancel(err=>{
         console.log(err);
         responseClient(res);
