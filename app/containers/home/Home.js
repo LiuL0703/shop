@@ -29,7 +29,6 @@ class Home extends Component {
             data = this.props.articleList.filter((item,index)=>{
                 return item.title.indexOf(value)!== -1;
             });
-            console.log('=========')
             console.log(this.props.articleList)
             console.log(data);
         }else{

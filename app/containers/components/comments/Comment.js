@@ -25,10 +25,18 @@ class Comment extends Component {
         const comment = this.props.comment;
         const username = this.props.username;
         const duration = (+Date.now() - comment.createdTime) / 1000
+        var times = ''
+        if(duration>=60&&duration<3600){
+            times = `${Math.round(duration / 60)}分钟前`
+        }else if(duration<60){
+            times = `${Math.round(Math.max(duration,1))}秒前`
+        }else if(duration>=3600&&duration<3600*24){
+            times = `${Math.round(duration / 3600)}小时前`
+        }else if(duration>=3600*24&&duration<=3600*24*365){
+            times = `${Math.round(duration / 3600*24)}天前`
+        }
         this.setState({
-            timeString:duration>60
-            ?`${Math.round(duration/60)}分钟前`
-            :`${Math.round(Math.max(duration,1))}秒前`
+            timeString:times
         })
     }
 
