@@ -33,7 +33,7 @@ class Comment extends Component {
         }else if(duration>=3600&&duration<3600*24){
             times = `${Math.round(duration / 3600)}小时前`
         }else if(duration>=3600*24&&duration<=3600*24*365){
-            times = `${Math.round(duration / 3600*24)}天前`
+            times = `${Math.round(duration / (3600*24))}天前`
         }
         this.setState({
             timeString:times
